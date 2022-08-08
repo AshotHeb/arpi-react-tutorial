@@ -4,6 +4,12 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+
+// 1.	Creating a Class Component
+// 2.	Props & State
+// 4.	Passing Method References Between Components
+//5.Event handling
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

@@ -1,23 +1,29 @@
-import logo from './logo.svg';
 import './App.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBurger } from '@fortawesome/free-solid-svg-icons'
+
+/*Children Property*/
+const Button = (props) => {
+  return <button className='btn'>
+    <FontAwesomeIcon icon={faBurger} size="xs" />
+  </button>
+}
+
+const Aside = ()=>{
+  return (
+    <aside className='aside'>
+
+    </aside>
+  )
+}
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Aside />
+      <Button>
+        Click
+      </Button>
     </div>
   );
 }
