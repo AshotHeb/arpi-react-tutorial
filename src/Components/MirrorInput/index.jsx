@@ -11,21 +11,20 @@ import React from 'react';
 
 class MirrorInput extends React.Component {
   state = {
-    inputvalue:""
-  } 
-  handleChange=(e)=>{
-const{value}=e.target
-this.setState({inputvalue:value})
+    inputvalue: ""
+  }
+  handleChange = (e) => {
+    const { value } = e.target
+    this.setState({ inputvalue: value })
   }
 
-render() {
-    return(
-        <div className="Mirror-input -wrapper">
-            <input type="text" className={"Mirror-input-text"} onChange={this.handleChange}/>
-            <p>{this.state.inputvalue}</p>
-
-        </div>
+  render() {
+    return (
+      <div className="Mirror-input -wrapper">
+        <input type="text" className={"Mirror-input-text"} onChange={this.handleChange} />
+        <p>{this.state.inputvalue}</p>
+      </div>
     )
-}
+  }
 }
 export default MirrorInput;

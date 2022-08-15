@@ -1,29 +1,39 @@
 import React from "react";
-class SquerRotate extends React.Component{
+class SquerRotate extends React.Component {
 
-state={
-    isRotated:false
-}
-
-handleStart=()=>{
-this.setState({
-    isRotated:true
-})
+    state = {
+        isRotated: false
     }
-render(){
-    this.state.isStart?"Sqr2":"Sqr1"
-    return(
-    <>  
-       <div className="wrapper">
-        <div className="Sqr1"></div>
-        <button onClick={this.handleStart}>Start</button>
-        <div className="Sqr2"></div>
-        </div>
-        </>
-    )
+
+    handleStart = () => {
+        this.setState({
+            isRotated: true
+        })
+    }
+
+    handleRevert = () => {
+        this.setState({
+            isRotated: false
+        })
+    }
+
+    render() {
+        const classname = this.state.isRotated ? "Sqr2 active" : "Sqr2"
+        const text = this.state.isRotated ? 'Revert' : 'Start'
+        const handler = this.state.isRotated ? this.handleRevert : this.handleStart
+
+        return (
+            <>
+                <div className="wrapper">
+                    <div className="Sqr1"></div>
+                    <button onClick={handler}>{text}</button>
+                    <div className={classname}></div>
+                </div>
+            </>
+        )
+    }
 }
-}
-export default SquerRotate; 
+export default SquerRotate;
 
 
 
