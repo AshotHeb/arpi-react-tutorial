@@ -1,0 +1,40 @@
+.smart-services-section {
+    border: 1px solid #f2f4fb;
+    border-radius: 20px !important;
+    box-shadow: 0 1px 4px 0 rgb(46 61 73 / 10%);
+    padding: 40px;
+    background: white !important;
+    max-width: 80%;
+    margin:20px auto 0;
+}
+
+.smart-services-section-h1{
+    font-family: inherit;
+    color: #5dba2f;
+    font-size: 36px;
+    text-transform: uppercase;
+    
+}
+.smart-services-section-h1 > span {
+    color:black;
+}
+
+.smart-services-section-body {
+    margin-top: 50px;
+    display: flex;
+}
+.smart-services-section-body >img {
+    width: 444px;
+    height: 266px;
+}
+
+.smart-services-list-item{
+    display: flex;
+    align-items: center;
+    gap:15px;
+}
+
+.smart-services-list-item >img {
+    width: 28px;
+    height: 28px;
+}
