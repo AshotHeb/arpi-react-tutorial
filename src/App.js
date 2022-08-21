@@ -1,10 +1,12 @@
-import { DivRotation } from "./components/DivRotation";
+// import { DivRotation } from "./components/DivRotation";
+import { TextsList } from "./components/TextsList";
 
 
 function App() {
   return (
     <div className="App">
-      <DivRotation />
+      {/* <DivRotation /> */}
+      <TextsList />
     </div>
   );
 }

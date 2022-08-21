@@ -1,0 +1,9 @@
+.list-item {
+  text-align: center;
+    border-bottom:1px solid black;
+}
+.list{
+display: flex;
+flex-direction: column;
+gap:20px;
+}
