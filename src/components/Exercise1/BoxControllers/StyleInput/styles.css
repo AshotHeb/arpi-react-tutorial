@@ -1,0 +1,22 @@
+.style-input-wrapper{
+    display: flex;
+}
+
+.style-input{
+    height: 25px;
+    border: 1px solid #e3a1ee;
+    outline: none;
+}
+
+.style-input-button{
+    background: transparent;
+    border: 1px solid #e3a1ee;
+    color: #cba3d5;
+    cursor: pointer;
+    width: 100%;
+}
+
+.style-input-button:hover{
+    background-color: #cba3d5;
+    color:#ffffff;
+}
