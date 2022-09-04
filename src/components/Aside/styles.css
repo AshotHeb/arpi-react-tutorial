@@ -1,0 +1,5 @@
+.project-aside{
+    height: calc(100vh - 112px);
+    border: 1px solid black;
+    width: 250px;
+}

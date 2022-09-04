@@ -1,0 +1,11 @@
+.card-title{
+    text-align: left;
+}
+
+.card-actions-wrapper{
+    display: flex;
+    gap:10px;
+}
+.card {
+    max-height: 300px;
+}
