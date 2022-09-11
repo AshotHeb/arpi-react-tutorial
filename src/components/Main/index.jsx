@@ -1,6 +1,6 @@
 
 import { useState } from 'react'
-import { AddNewTask } from '../AddNewTask'
+import { TaskForm } from '../TaskForm'
 import { TodoSection } from '../TodoSection'
 import './styles.css'
 
@@ -22,6 +22,7 @@ const damyTodoData = [{
 
 export const Main = () => {
     const [todoData, setTodoData] = useState(damyTodoData)
+    const [editableTaskData, setEditableTaskData] = useState(null)
 
     const onAddTask = (formData) => {
         const { title, description } = formData
@@ -45,11 +46,23 @@ export const Main = () => {
         setTodoData((prev) => prev.filter(task => task.id !== id))
     }
 
+    const onEditDone = (editedTaskData) => {
+        setTodoData(prev => prev.map(task => task.id === editedTaskData.id ? editedTaskData : task))
+        setEditableTaskData(null)
+    }
+
 
     return (
         <main className='project-main'>
-            <AddNewTask onSubmit={onAddTask} />
-            <TodoSection todoData={todoData} deleteTask={deleteTask}/>
+            <div className='project-forms'>
+                <TaskForm onSubmit={onAddTask} />
+                {editableTaskData && <TaskForm onSubmit={onEditDone} editableTaskData={editableTaskData} />}
+            </div>
+            <TodoSection
+                todoData={todoData}
+                deleteTask={deleteTask}
+                setEditableTaskData={setEditableTaskData}
+            />
         </main>
     )
 }

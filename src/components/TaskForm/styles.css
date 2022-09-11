@@ -1,6 +1,6 @@
-.add-new-task-form{
+.task-form{
     margin-bottom: 100px;
-    max-width:300px;
+    width:300px;
     text-align: left;
 }
 

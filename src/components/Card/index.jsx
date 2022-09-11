@@ -1,7 +1,10 @@
 import { Button, Card as LibCard, CardBody, CardText, CardTitle } from "reactstrap"
 import './styles.css'
 
-export const Card = ({ todo: { title, description, id } ,deleteTask}) => {
+export const Card = ({ todo ,deleteTask,setEditableTaskData}) => {
+
+    const { title, description, id } = todo
+    
     return (
         <LibCard
             style={{
@@ -21,7 +24,7 @@ export const Card = ({ todo: { title, description, id } ,deleteTask}) => {
                     <Button color="danger" onClick={()=>deleteTask(id)}>
                         Delete
                     </Button>
-                    <Button  color="warning">
+                    <Button  color="warning" onClick={()=>setEditableTaskData(todo)}>
                         Edit
                     </Button>
                 </div>
