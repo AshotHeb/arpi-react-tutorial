@@ -23,19 +23,23 @@ export const AddNewTask = ({ onSubmit }) => {
         <Form className='add-new-task-form' onSubmit={(event)=>{
             event.preventDefault()
             onSubmit(formData)
+            setFormData({
+                title: '',
+                description: ''
+            })
         }}>
             <FormGroup className='form-group'>
                 <Label for="exampleEmail">
                     Title
                 </Label>
-                <Input name={'title'} onChange={handleChange} />
+                <Input name={'title'} onChange={handleChange} value={formData.title}/>
             </FormGroup>
 
             <FormGroup className='form-group'>
                 <Label for="exampleEmail">
                     Description
                 </Label>
-                <Input name={'description'} onChange={handleChange} />
+                <Input name={'description'} onChange={handleChange}  value={formData.description}/>
             </FormGroup>
 
             <Button color="primary">Add New Task</Button>

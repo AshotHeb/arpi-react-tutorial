@@ -5,17 +5,17 @@ import { TodoSection } from '../TodoSection'
 import './styles.css'
 
 const damyTodoData = [{
-    _id: 1,
+    id: 1,
     title: 'Ticket 1',
     description: 'Ticket 1 description'
 },
 {
-    _id: 2,
+    id: 2,
     title: 'Ticket 2',
     description: 'Ticket 2 description'
 },
 {
-    _id: 3,
+    id: 3,
     title: 'Ticket 3',
     description: 'Ticket 3 description'
 }]
@@ -26,27 +26,30 @@ export const Main = () => {
     const onAddTask = (formData) => {
         const { title, description } = formData
 
-        const newTask  ={
-            _id:Math.random(),
+        const newTask = {
+            id: Math.random(),
             title,
             description
         }
 
-        setTodoData(prev=>{
-            return  [
+        setTodoData(prev => {
+            return [
                 ...prev,
                 newTask
             ]
         })
 
     }
-    
+
+    const deleteTask = (id) => {
+        setTodoData((prev) => prev.filter(task => task.id !== id))
+    }
+
 
     return (
         <main className='project-main'>
             <AddNewTask onSubmit={onAddTask} />
-
-            <TodoSection todoData={todoData} />
+            <TodoSection todoData={todoData} deleteTask={deleteTask}/>
         </main>
     )
 }

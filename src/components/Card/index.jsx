@@ -1,7 +1,7 @@
 import { Button, Card as LibCard, CardBody, CardText, CardTitle } from "reactstrap"
 import './styles.css'
 
-export const Card = ({ todo: { title, description, _id } }) => {
+export const Card = ({ todo: { title, description, id } ,deleteTask}) => {
     return (
         <LibCard
             style={{
@@ -18,7 +18,7 @@ export const Card = ({ todo: { title, description, _id } }) => {
                 </CardText>
 
                 <div className={'card-actions-wrapper'}>
-                    <Button color="danger" >
+                    <Button color="danger" onClick={()=>deleteTask(id)}>
                         Delete
                     </Button>
                     <Button  color="warning">
