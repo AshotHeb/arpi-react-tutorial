@@ -27,14 +27,11 @@ export const TaskForm = ({ onSubmit, editableTaskData }) => {
         <Form className='task-form' onSubmit={(event) => {
             event.preventDefault()
             if (editableTaskData) {
-                onSubmit({
-                    ...formData,
-                    id:editableTaskData.id
-                })
+                onSubmit(editableTaskData._id, formData)
             } else {
                 onSubmit(formData)
             }
-            
+
             setFormData({
                 title: '',
                 description: ''

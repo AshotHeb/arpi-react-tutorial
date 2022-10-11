@@ -3,7 +3,7 @@ import './styles.css'
 
 export const Card = ({ todo ,deleteTask,setEditableTaskData}) => {
 
-    const { title, description, id } = todo
+    const { title, description, _id } = todo
     
     return (
         <LibCard
@@ -21,7 +21,7 @@ export const Card = ({ todo ,deleteTask,setEditableTaskData}) => {
                 </CardText>
 
                 <div className={'card-actions-wrapper'}>
-                    <Button color="danger" onClick={()=>deleteTask(id)}>
+                    <Button color="danger" onClick={()=>deleteTask(_id)}>
                         Delete
                     </Button>
                     <Button  color="warning" onClick={()=>setEditableTaskData(todo)}>

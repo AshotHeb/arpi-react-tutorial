@@ -1,55 +1,83 @@
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { BACKEND_URL } from '../../consts'
 import { TaskForm } from '../TaskForm'
 import { TodoSection } from '../TodoSection'
 import './styles.css'
 
-const damyTodoData = [{
-    id: 1,
-    title: 'Ticket 1',
-    description: 'Ticket 1 description'
-},
-{
-    id: 2,
-    title: 'Ticket 2',
-    description: 'Ticket 2 description'
-},
-{
-    id: 3,
-    title: 'Ticket 3',
-    description: 'Ticket 3 description'
-}]
-
 export const Main = () => {
-    const [todoData, setTodoData] = useState(damyTodoData)
+    const [todoData, setTodoData] = useState([])
     const [editableTaskData, setEditableTaskData] = useState(null)
 
     const onAddTask = (formData) => {
         const { title, description } = formData
 
         const newTask = {
-            id: Math.random(),
             title,
             description
         }
 
-        setTodoData(prev => {
-            return [
-                ...prev,
-                newTask
-            ]
+        fetch(`${BACKEND_URL}/task`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newTask)
         })
+            .then((res) => res.json())
+            .then(data => {
+                setTodoData(prev => {
+                    return [
+                        ...prev,
+                        data
+                    ]
+                })
+            })
+
+
+
 
     }
 
-    const deleteTask = (id) => {
-        setTodoData((prev) => prev.filter(task => task.id !== id))
+    const deleteTask = (_id) => {
+        fetch(`${BACKEND_URL}/task/${_id}`, {
+            method: 'DELETE'
+        })
+            .then((data) => {
+                setTodoData((prev) => prev.filter(task => task._id !== _id))
+            })
+
     }
 
-    const onEditDone = (editedTaskData) => {
-        setTodoData(prev => prev.map(task => task.id === editedTaskData.id ? editedTaskData : task))
+    const onEditDone = (_id, editedTaskData) => {
+        fetch(`${BACKEND_URL}/task/${_id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(editedTaskData)
+        })
+            .then(res => res.json())
+            .then(data => {
+                setTodoData(prev => prev.map(task => {
+                    if (task._id === _id) {
+                        return data
+                    }
+
+                    return task
+                }))
+            })
+
         setEditableTaskData(null)
     }
+
+    useEffect(() => {
+        fetch(`${BACKEND_URL}/task`)
+            .then(res => res.json())
+            .then(data => {
+                setTodoData(data)
+            })
+    }, [])
 
 
     return (
