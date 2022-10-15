@@ -8,4 +8,10 @@
 }
 .card {
     max-height: 300px;
+
+}
+
+.check-box{
+    display: flex;
+    justify-content: flex-end;
 }
