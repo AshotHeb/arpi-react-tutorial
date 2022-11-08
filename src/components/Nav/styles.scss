@@ -1,0 +1,20 @@
+.nav-list{
+    list-style: none;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    height: 100%;
+    margin: 0;
+}
+
+.nav-item {
+    &:hover {
+        color:grey;
+    }
+
+    & > .nav-link {
+        &.selected {
+            color:red;
+        }
+    }
+}
