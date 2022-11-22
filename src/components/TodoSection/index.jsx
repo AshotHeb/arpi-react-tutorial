@@ -3,7 +3,7 @@ import './styles.css'
 
 
 
-export const TodoSection = ({ todoData, deleteTask, setEditableTaskData, toggleSelectTask,selectedTasks }) => {
+export const TodoSection = ({ todoData, deleteTask, setEditableTaskData, toggleSelectTask, selectedTasks, onStatusChange }) => {
     return (
         <div className="todo-section">
             {todoData.map(todo => {
@@ -11,10 +11,11 @@ export const TodoSection = ({ todoData, deleteTask, setEditableTaskData, toggleS
                     todo={todo}
                     key={todo._id}
                     deleteTask={deleteTask}
-                    setEditableTaskData={setEditableTaskData} 
+                    setEditableTaskData={setEditableTaskData}
                     toggleSelectTask={toggleSelectTask}
                     isSelected={selectedTasks.includes(todo._id)}
-                    />
+                    onStatusChange={onStatusChange}
+                />
             })}
         </div>
     )

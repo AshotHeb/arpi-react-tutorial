@@ -20,19 +20,13 @@ export const Main = () => {
     }
 
     const onAddTask = (formData) => {
-        const { title, description } = formData
-
-        const newTask = {
-            title,
-            description
-        }
 
         fetch(`${BACKEND_URL}/task`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(newTask)
+            body: JSON.stringify(formData)
         })
             .then((res) => res.json())
             .then(data => {
@@ -46,6 +40,34 @@ export const Main = () => {
 
 
 
+
+    }
+
+    const onStatusChange = (_id , currentStatus)=>{
+        const status = currentStatus === 'active' ? 'done' : 'active'
+
+        fetch(`${BACKEND_URL}/task/${_id}`, {
+            headers:{
+                'Content-Type':'application/json'
+            },
+            method: 'PUT',
+            body:JSON.stringify({
+                status
+            })
+        }).then(()=>{
+            setTodoData(prev => prev.map(task => {
+                if (task._id === _id) {
+                    return {
+                        ...task,
+                        status
+                    }
+                }
+    
+                return task
+            }))
+        })
+
+      
 
     }
 
@@ -128,6 +150,7 @@ export const Main = () => {
                 setEditableTaskData={setEditableTaskData}
                 toggleSelectTask={toggleSelectTask}
                 selectedTasks={selectedTasks}
+                onStatusChange={onStatusChange}
             />
         </main>
     )

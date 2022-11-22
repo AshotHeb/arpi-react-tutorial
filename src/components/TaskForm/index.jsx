@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Button, Form, FormGroup, Input, Label } from 'reactstrap'
+import DatePicker from 'react-datepicker'
 import './styles.css'
 
 export const TaskForm = ({ onSubmit, editableTaskData }) => {
@@ -7,8 +8,13 @@ export const TaskForm = ({ onSubmit, editableTaskData }) => {
 
     const [formData, setFormData] = useState({
         title: editableTaskData ? editableTaskData.title : '',
-        description: editableTaskData ? editableTaskData.description : ''
+        description: editableTaskData ? editableTaskData.description : '',
     })
+
+    const [todoDate, setTodoDate] = useState(editableTaskData?.date 
+        ? new Date(editableTaskData.date) : 
+        new Date()
+        );
 
     const handleChange = (e) => {
         const { target } = e
@@ -26,10 +32,16 @@ export const TaskForm = ({ onSubmit, editableTaskData }) => {
     return (
         <Form className='task-form' onSubmit={(event) => {
             event.preventDefault()
+
+            const body = {
+                ...formData,
+                date: todoDate.toISOString().slice(0, 10)
+            }
+
             if (editableTaskData) {
-                onSubmit(editableTaskData._id, formData)
+                onSubmit(editableTaskData._id, body)
             } else {
-                onSubmit(formData)
+                onSubmit(body)
             }
 
             setFormData({
@@ -51,7 +63,15 @@ export const TaskForm = ({ onSubmit, editableTaskData }) => {
                 <Input name={'description'} onChange={handleChange} value={formData.description} />
             </FormGroup>
 
-            <Button color="primary">  {buttonValue}</Button>
+            <div>
+                <DatePicker selected={todoDate} onChange={(date: Date) => setTodoDate(date)} />
+            </div>
+
+            <Button color="primary" style={{
+                marginTop: '16px'
+            }}>
+                {buttonValue}
+            </Button>
         </Form>
 
     )
