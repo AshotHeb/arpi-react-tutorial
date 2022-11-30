@@ -1,9 +1,8 @@
 .project-main{
     padding: 20px;
-
+    width: calc(100% - 250px);
     overflow: scroll;
     height: calc(100vh - 112px);
-  
 }
 
 .card-body{

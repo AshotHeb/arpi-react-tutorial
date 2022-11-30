@@ -2,8 +2,8 @@
 import { useEffect, useState } from 'react'
 import { Button } from 'reactstrap'
 import { BACKEND_URL } from '../../consts'
-import { TaskForm } from '../TaskForm'
-import { TodoSection } from '../TodoSection'
+import { TaskForm } from './TaskForm'
+import { TodoSection } from './TodoSection'
 import './styles.css'
 
 export const Main = () => {
@@ -75,7 +75,7 @@ export const Main = () => {
         fetch(`${BACKEND_URL}/task/${_id}`, {
             method: 'DELETE'
         })
-            .then((data) => {
+            .then(() => {
                 setTodoData((prev) => prev.filter(task => task._id !== _id))
             })
 
@@ -115,7 +115,7 @@ export const Main = () => {
            
         })
             .then(res => res.json())
-            .then(data => {
+            .then(() => {
                 setTodoData(prev=>prev.filter(task=>!selectedTasks.includes(task._id)))
                 setSelectedTasks([])
             })

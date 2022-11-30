@@ -11,10 +11,10 @@ export const TaskForm = ({ onSubmit, editableTaskData }) => {
         description: editableTaskData ? editableTaskData.description : '',
     })
 
-    const [todoDate, setTodoDate] = useState(editableTaskData?.date 
-        ? new Date(editableTaskData.date) : 
+    const [todoDate, setTodoDate] = useState(editableTaskData?.date
+        ? new Date(editableTaskData.date) :
         new Date()
-        );
+    );
 
     const handleChange = (e) => {
         const { target } = e
@@ -64,7 +64,7 @@ export const TaskForm = ({ onSubmit, editableTaskData }) => {
             </FormGroup>
 
             <div>
-                <DatePicker selected={todoDate} onChange={(date: Date) => setTodoDate(date)} />
+                <DatePicker selected={todoDate} onChange={(date) => setTodoDate(date)} />
             </div>
 
             <Button color="primary" style={{

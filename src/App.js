@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import { Aside } from './components/Aside';
-import { Header } from './components/Header';
+import { Aside } from './containers/Aside';
+import { Header } from './containers/Header';
 import { NotFound } from './pages/404';
 import { AboutMePage } from './pages/AboutMe';
 import { ContactMe } from './pages/ContactMe';
