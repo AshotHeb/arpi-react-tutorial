@@ -49,7 +49,7 @@ export const TaskForm = ({ onSubmit, editableTaskData }) => {
                 description: ''
             })
         }}>
-            <FormGroup className='form-group'>
+            <FormGroup className='form-group' >
                 <Label for="exampleEmail">
                     Title
                 </Label>

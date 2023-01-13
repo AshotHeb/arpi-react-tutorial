@@ -6,6 +6,10 @@ export const STATUS_SELECT_OPTIONS = [
     {
         value: 'active',
         label: 'Active'
+    },
+    {
+        value: '',
+        label: '--'
     }
 ]
 
@@ -33,5 +37,9 @@ export const SORT_SELECT_OPTIONS = [
     {
         value: 'completion_date_newest',
         label: 'Completion Date Newest'
+    },
+    {
+        value: '',
+        label: '--'
     }
 ]

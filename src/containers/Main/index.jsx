@@ -5,17 +5,23 @@ import { BACKEND_URL } from '../../consts'
 import { TaskForm } from './TaskForm'
 import { TodoSection } from './TodoSection'
 import './styles.css'
+import { getQueryStringFromObject } from '../../helpers'
 
-export const Main = () => {
+export const Main = ({
+    filterOptions
+}) => {
     const [todoData, setTodoData] = useState([])
     const [editableTaskData, setEditableTaskData] = useState(null)
-    const [selectedTasks ,setSelectedTasks] = useState([])
+    const [selectedTasks, setSelectedTasks] = useState([])
 
-    const toggleSelectTask = (taskId)=>{
-        if(selectedTasks.includes(taskId)) {
-            setSelectedTasks(prev=>prev.filter(selectedTaskId=>selectedTaskId !== taskId))
-        }else{
-            setSelectedTasks(prev=>[...prev,taskId])
+
+
+
+    const toggleSelectTask = (taskId) => {
+        if (selectedTasks.includes(taskId)) {
+            setSelectedTasks(prev => prev.filter(selectedTaskId => selectedTaskId !== taskId))
+        } else {
+            setSelectedTasks(prev => [...prev, taskId])
         }
     }
 
@@ -43,18 +49,18 @@ export const Main = () => {
 
     }
 
-    const onStatusChange = (_id , currentStatus)=>{
+    const onStatusChange = (_id, currentStatus) => {
         const status = currentStatus === 'active' ? 'done' : 'active'
 
         fetch(`${BACKEND_URL}/task/${_id}`, {
-            headers:{
-                'Content-Type':'application/json'
+            headers: {
+                'Content-Type': 'application/json'
             },
             method: 'PUT',
-            body:JSON.stringify({
+            body: JSON.stringify({
                 status
             })
-        }).then(()=>{
+        }).then(() => {
             setTodoData(prev => prev.map(task => {
                 if (task._id === _id) {
                     return {
@@ -62,12 +68,12 @@ export const Main = () => {
                         status
                     }
                 }
-    
+
                 return task
             }))
         })
 
-      
+
 
     }
 
@@ -103,43 +109,52 @@ export const Main = () => {
         setEditableTaskData(null)
     }
 
-    const handleDeleteBatchTasks = ()=>{
+    const handleDeleteBatchTasks = () => {
         fetch(`${BACKEND_URL}/task`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body:JSON.stringify({
-                tasks:selectedTasks
+            body: JSON.stringify({
+                tasks: selectedTasks
             })
-           
+
         })
             .then(res => res.json())
             .then(() => {
-                setTodoData(prev=>prev.filter(task=>!selectedTasks.includes(task._id)))
+                setTodoData(prev => prev.filter(task => !selectedTasks.includes(task._id)))
                 setSelectedTasks([])
             })
     }
 
-    useEffect(() => {
-        fetch(`${BACKEND_URL}/task`)
+    const fetchTasks = (filterOptions) => {
+
+        const query = getQueryStringFromObject(filterOptions)
+
+        fetch(`${BACKEND_URL}/task${query}`)
             .then(res => res.json())
             .then(data => {
                 setTodoData(data)
             })
-    }, [])
+    }
+
+    useEffect(() => {
+        fetchTasks(filterOptions)
+    }, [filterOptions])
+
+
 
 
     return (
         <main className='project-main'>
             {!!selectedTasks.length &&
-             <Button 
-             color="danger"
-             onClick={handleDeleteBatchTasks}
-             >
-                 Delete All
-                  </Button>
-             }
+                <Button
+                    color="danger"
+                    onClick={handleDeleteBatchTasks}
+                >
+                    Delete All
+                </Button>
+            }
             <div className='project-forms'>
                 <TaskForm onSubmit={onAddTask} />
                 {editableTaskData && <TaskForm onSubmit={onEditDone} editableTaskData={editableTaskData} />}

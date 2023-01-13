@@ -1,15 +1,17 @@
 import './styles.css'
 
 //  name :string
-//  defaultValue:string
+//  value:string
 //  options :[{value:string , label:string}]
 //label:string
+//onChange ::Function
 
 export const Select = ({
     name,
-    defaultValue,
     options,
-    label
+    label,
+    onChange,
+    value
 }) => {
 
 
@@ -17,10 +19,19 @@ export const Select = ({
         <>
             <label htmlFor="">{label}</label>
 
-            <select name={name} id="" defaultValue={defaultValue} className='select-input'>
+            <select
+                name={name}
+                id=""
+                value={value}
+                className='select-input'
+                onChange={(event) => {
+                    onChange(name, event.target.value)
+                }}>
+
                 {options.map((option, index) => {
                     return <option value={option.value} key={index}>{option.label}</option>
                 })}
+
             </select>
         </>
     )

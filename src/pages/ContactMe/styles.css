@@ -1,0 +1,30 @@
+.contact-page{
+    padding:40px 32px;
+    width: calc(100% - 250px);
+}
+
+.contact-form{
+    display: flex;
+    flex-direction: column;
+
+gap:20px;
+}
+
+.contact-input{
+    padding: 10px 5px;
+}
+
+.contact-input.textarea {
+    height:200px;
+    resize: none;
+}
+.submit-button{
+    width: max-content;
+    border: 0;
+    color: white;
+    background: #7ec5f7;
+    padding: 4px 40px;
+    border-radius: 2px;
+
+}
+
