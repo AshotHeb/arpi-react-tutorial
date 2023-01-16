@@ -28,3 +28,14 @@ gap:20px;
 
 }
 
+.input-error-message{
+    color:red;
+}
+.input-box{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.input-box > input ,.input-box > textarea {
+    width: 100%;
+}
