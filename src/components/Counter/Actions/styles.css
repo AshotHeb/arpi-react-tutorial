@@ -1,0 +1,17 @@
+.counter-actions-wrapper{
+    display: flex;
+    gap:20px;
+}
+
+.counter-actions-button{
+    padding: 6px 15px;
+    background: blue;
+    border: none;
+    color:white;
+    cursor: pointer;
+
+}
+
+.counter-actions-button:hover {
+    background: rgb(63, 63, 255);
+}
