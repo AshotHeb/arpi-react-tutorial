@@ -1,0 +1,17 @@
+.texts-list-wrapper {
+    border: 1px dashed black;
+    margin-top: 20px;
+}
+
+.texts-list{
+    list-style: none;
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.texts-list>li {
+    padding: 3px;
+    border: 1px solid red;
+
+}
