@@ -20,3 +20,24 @@ export const getQueryStringFromObject = (options) => {
     return query
 
 }
+
+export const isValidDate = (date) => {
+    const dateRegexp = /\d{4}-\d{2}-\d{2}/
+    return dateRegexp.test(date)
+}
+
+
+export const queryToObject = (queryString) => {
+    return queryString
+        .replace('?', '')
+        //'status=active&search=barev'
+        .split('&')
+        //['status=active','search=barev']
+        .reduce((queryObject, item) => {
+            //'search=barev'
+            const [key, value] = item.split('=')
+            //['search' ,'barev']
+            queryObject[key] = isValidDate(value) ? new Date(value) : value
+            return queryObject
+        }, {})
+}

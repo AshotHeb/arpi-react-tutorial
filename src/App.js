@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import { Aside } from './containers/Aside';
@@ -7,7 +7,9 @@ import { NotFound } from './pages/404';
 import { AboutMePage } from './pages/AboutMe';
 import { ContactMe } from './pages/ContactMe';
 import { HomePage } from './pages/Home';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
+import { queryToObject } from './helpers';
+
 
 const filterDefaultState = {
   status: '',
@@ -60,6 +62,8 @@ function App() {
   const [filterOptions, setFilterOptions] = useState(filterDefaultState)
 
   const navigate = useNavigate()
+  const location = useLocation()
+  const searchQuery = location.search
 
 
   const changeFilter = (name, value) => {
@@ -87,7 +91,18 @@ function App() {
 
   const resetFilters = () => {
     setFilterOptions(filterDefaultState)
+    navigate({
+      search: ''
+    })
   }
+
+  useEffect(() => {
+    const queryObject = queryToObject(searchQuery)
+    setFilterOptions(prev => ({
+      ...prev,
+      ...queryObject
+    }))
+  }, [])
 
   return (
     <div className="App">
